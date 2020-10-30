@@ -10,6 +10,7 @@ class User extends Model {
     }
 }
 
+
 User.init(
     {
         id: {
@@ -30,7 +31,7 @@ User.init(
         }
     },
     {
-        // bcrypt hooks used to encrypt passwords when created or updated
+        // bcrypt hooks used to encrypt passwords when created or updated before write to db
         hooks: {
             async beforeCreate(newUserData) {
                 newUserData.password = await bcrypt.hash(newUserData.password, 10);
@@ -48,5 +49,6 @@ User.init(
         modelName: 'user'
     }
 );
+
 
 module.exports = User;
