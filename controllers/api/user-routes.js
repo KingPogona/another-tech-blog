@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User } = require("../../models");
+const { User, Post } = require("../../models");
 
 // POST /api/users
 router.post('/', (req, res) => {
@@ -30,7 +30,13 @@ router.get('/:id', (req, res) => {
     User.findOne({
         where: {
             id: req.params.id
-        }
+        },
+        include: [
+            {
+                model: Post,
+                attributes: ['id', 'title', 'created_at']
+            }
+        ]
     })
         .then(dbUserData => res.json(dbUserData))
         .catch(err => {
