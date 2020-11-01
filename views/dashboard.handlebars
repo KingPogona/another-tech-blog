@@ -63,20 +63,25 @@
 
             </div>
 
-            {{!-- remove d-none when it is time to comment on this. or... have a container div to put this into when needed... --}}
-            <div class="card-footer">
+            {{!-- remove d-none when it is time to comment on this. or... 
+            have a container div to put this into when needed or... 
+            If not enough time, skip for now. 
+            This could also be displayed on a seperate page.
+            --}}
+            
+            {{!-- <div class="card-footer">
                 <div class="border-bottom border-dark p-3">
                     <textarea class="w-100" name="commentInput" placeholder="Write a comment here..."
                         style="height:100px"></textarea>
                     <button type="submit" class="submitComment btn btn-primary w-100">Add Comment</button>
-                </div>
+                </div> --}}
 
 
                 {{!-- past comments --}}
-                <div class="p-3 ">
+                {{!-- <div class="p-3 ">
                     <h3>Comments:</h3>
                     <ul class="p-0 m-0">
-                        {{!-- {{#each comment as |comment|}} --}}
+                        {{#each comment as |comment|}}
                         <li class="row border border-dark rounded-lg my-3 px-3 pt-2">
                             <div class="Container-fluid">
                                 <p class="font-weight-bold">{{comment.comment_title}}Test Title</p>
@@ -92,10 +97,10 @@
                                 <p>{{comment.comment_content}} test content</p>
                             </div>
                         </li>
-                        {{!-- {{/each}} --}}
+                        {{/each}}
                     </ul>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </li>
     {{!-- {{/each}} --}}
