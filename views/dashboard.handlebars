@@ -1,0 +1,102 @@
+<h2 class="float-left">Dashboard</h2>
+<button type="button" class="btn btn-primary float-right" id="addPost">Add Post</button>
+
+
+{{!-- perhaps make this appear if the user has no posts? --}}
+
+{{!-- {{#unless hasPosts}}
+<div class="row py-3">
+    <p class="mx-auto">Hmmm... It appears you don't have any posts. You can make your first post by clicking "Add Post" above.</p>
+</div>
+{{/unless}} --}}
+
+
+
+<ul class="p-0 m-0">
+
+
+    <li class="row py-3">
+        <div class="card w-100">
+            <div class="card-header">
+                <span class="float-left font-weight-bold">Create A New Post:</span>
+            </div>
+
+            <div class="card-body">
+
+                <form class="w-100">
+                    <div class="form-group">
+                        <label for="postTitle">Title</label>
+                        <input type="text" class="form-control" id="postTitle">
+                    </div>
+                    <div class="form-group">
+                        <label for="postContent">Post Content</label>
+                        <textarea class="w-100" id="postContent" placeholder="Write your post content here..."
+                            style="height:100px"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+
+            </div>
+        </div>
+    </li>
+
+
+
+
+    {{!-- {{#each posts as |post|}} --}}
+    <li class="row py-3">
+        <div class="card w-100">
+            <div class="card-header">
+                <span class="float-left font-weight-bold">{{post.title}}Placeholder Title</span>
+
+                <span class="float-right">
+                    Posted on: {{post.created_at}} (Placeholder Time)
+                </span>
+            </div>
+
+            <div class="card-body">
+                <p class="card-text">
+                    {{post.post_content}}
+                    With supporting text below as a natural lead-in to additional content.
+                </p>
+
+
+            </div>
+
+            {{!-- remove d-none when it is time to comment on this. or... have a container div to put this into when needed... --}}
+            <div class="card-footer">
+                <div class="border-bottom border-dark p-3">
+                    <textarea class="w-100" name="commentInput" placeholder="Write a comment here..."
+                        style="height:100px"></textarea>
+                    <button type="submit" class="submitComment btn btn-primary w-100">Add Comment</button>
+                </div>
+
+
+                {{!-- past comments --}}
+                <div class="p-3 ">
+                    <h3>Comments:</h3>
+                    <ul class="p-0 m-0">
+                        {{!-- {{#each comment as |comment|}} --}}
+                        <li class="row border border-dark rounded-lg my-3 px-3 pt-2">
+                            <div class="Container-fluid">
+                                <p class="font-weight-bold">{{comment.comment_title}}Test Title</p>
+
+                                <p>{{comment.comment_content}} test content</p>
+                            </div>
+                        </li>
+
+                        <li class="row border border-dark rounded-lg my-3 px-3 pt-2">
+                            <div class="Container-fluid">
+                                <p class="font-weight-bold">{{comment.comment_title}}Test Title</p>
+
+                                <p>{{comment.comment_content}} test content</p>
+                            </div>
+                        </li>
+                        {{!-- {{/each}} --}}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </li>
+    {{!-- {{/each}} --}}
+</ul>
