@@ -5,61 +5,48 @@ async function postClickHandler(event) {
     if (check == 'BUTTON' && submitComment) {
         const postListItemEl = event.target.closest(".postListItem")
 
-        const post_id = postListItemEl.id
+        if (postListItemEl !== null) {
+            const post_id = postListItemEl.id
 
-        const comment_content = postListItemEl.querySelector('#commentInput' + post_id).value.trim();
 
-        if (comment_content) {
+            const comment_content = postListItemEl.querySelector('#commentInput' + post_id).value.trim();
 
-            const response = await fetch('/api/comments', {
-                method: 'post',
-                body: JSON.stringify({
-                    comment_content,
-                    post_id
-                    //user_id will be handled by the api/comments and will get the session variable
-                }),
-                headers: { 'Content-Type': 'application/json' }
-            });
+            if (comment_content) {
 
-            if (response.ok) {
-                console.log("success")
-                location.reload();
-            } else {
-                alert(response.statusText);
+                const response = await fetch('/api/comments', {
+                    method: 'post',
+                    body: JSON.stringify({
+                        comment_content,
+                        post_id
+                        //user_id will be handled by the api/comments and will get the session variable
+                    }),
+                    headers: { 'Content-Type': 'application/json' }
+                });
+
+                if (response.ok) {
+                    console.log("success")
+                    location.reload();
+                } else {
+                    alert(response.statusText);
+                }
             }
         }
     } else if (check !== 'TEXTAREA' && check !== 'INPUT') {
         const postListItemEl = event.target.closest(".postListItem")
 
-        const id = postListItemEl.id;
+        // console.log(postListItemEl)
 
-        const cardFooterEl = postListItemEl.querySelector(".card-footer")
+        if (postListItemEl !== null) {
+            const post_id = postListItemEl.id
 
-        cardFooterEl.classList.remove("d-none");
+
+            const cardFooterEl = postListItemEl.querySelector(".card-footer")
+
+            cardFooterEl.classList.remove("d-none");
+        }
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 document.addEventListener('click', postClickHandler)

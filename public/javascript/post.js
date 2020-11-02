@@ -40,28 +40,30 @@ async function postClickHandler(event) {
 
         const postListItemEl = event.target.closest(".postListItem")
 
+        if (postListItemEl !== null) {
 
-        const id = postListItemEl.id;
-        const title = postListItemEl.querySelector('#editPostTitle' + id).value.trim();
-        const post_content = postListItemEl.querySelector('#editPostContent' + id).value.trim();
+            const id = postListItemEl.id;
+            const title = postListItemEl.querySelector('#editPostTitle' + id).value.trim();
+            const post_content = postListItemEl.querySelector('#editPostContent' + id).value.trim();
 
-        if (title && post_content) {
+            if (title && post_content) {
 
-            const response = await fetch('/api/posts/' + id, {
-                method: 'put',
-                body: JSON.stringify({
-                    title,
-                    post_content
-                    //user_id will be handled by the api/posts and will get the session variable
-                }),
-                headers: { 'Content-Type': 'application/json' }
-            });
+                const response = await fetch('/api/posts/' + id, {
+                    method: 'put',
+                    body: JSON.stringify({
+                        title,
+                        post_content
+                        //user_id will be handled by the api/posts and will get the session variable
+                    }),
+                    headers: { 'Content-Type': 'application/json' }
+                });
 
-            if (response.ok) {
-                // console.log("success")
-                location.reload();
-            } else {
-                alert(response.statusText);
+                if (response.ok) {
+                    // console.log("success")
+                    location.reload();
+                } else {
+                    alert(response.statusText);
+                }
             }
         }
     }
@@ -69,41 +71,47 @@ async function postClickHandler(event) {
 
         const postListItemEl = event.target.closest(".postListItem")
 
-        const id = postListItemEl.id;
+        if (postListItemEl !== null) {
 
-        const response = await fetch('/api/posts/' + id, {
-            method: 'delete',
-            headers: { 'Content-Type': 'application/json' }
-        });
+            const id = postListItemEl.id;
 
-        if (response.ok) {
-            console.log("success")
-            location.reload();
-        } else {
-            alert(response.statusText);
+            const response = await fetch('/api/posts/' + id, {
+                method: 'delete',
+                headers: { 'Content-Type': 'application/json' }
+            });
+
+            if (response.ok) {
+                console.log("success")
+                location.reload();
+            } else {
+                alert(response.statusText);
+            }
         }
     }
     else if (check !== 'TEXTAREA' && check !== 'INPUT') {
         const postListItemEl = event.target.closest(".postListItem")
 
-        const postEl = postListItemEl.querySelector(".postCard");
-        const titleEl = postEl.querySelector(".postTitle");
-        const bodyEl = postEl.querySelector(".postBody");
+        if (postListItemEl !== null) {
 
-        const id = postListItemEl.id;
-        const title = titleEl.innerHTML.trim();
-        const body = bodyEl.innerHTML.trim();
+            const postEl = postListItemEl.querySelector(".postCard");
+            const titleEl = postEl.querySelector(".postTitle");
+            const bodyEl = postEl.querySelector(".postBody");
 
-        const editFormEl = postListItemEl.querySelector(".editPostContainer");
+            const id = postListItemEl.id;
+            const title = titleEl.innerHTML.trim();
+            const body = bodyEl.innerHTML.trim();
 
-        const editTitleEl = postListItemEl.querySelector("#editPostTitle" + id);
-        const postContentEl = postListItemEl.querySelector("#editPostContent" + id);
+            const editFormEl = postListItemEl.querySelector(".editPostContainer");
 
-        editTitleEl.value = title;
-        postContentEl.value = body;
+            const editTitleEl = postListItemEl.querySelector("#editPostTitle" + id);
+            const postContentEl = postListItemEl.querySelector("#editPostContent" + id);
 
-        editFormEl.classList.remove('d-none');
-        postEl.classList.add('d-none');
+            editTitleEl.value = title;
+            postContentEl.value = body;
+
+            editFormEl.classList.remove('d-none');
+            postEl.classList.add('d-none');
+        }
     }
 };
 
