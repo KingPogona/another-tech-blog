@@ -31,31 +31,11 @@ async function postClickHandler(event) {
     } else if (check !== 'TEXTAREA' && check !== 'INPUT') {
         const postListItemEl = event.target.closest(".postListItem")
 
-        // const postEl = postListItemEl.querySelector(".postCard");
-        // const titleEl = postEl.querySelector(".postTitle");
-        // const bodyEl = postEl.querySelector(".postBody");
-
         const id = postListItemEl.id;
-        // const title = titleEl.innerHTML.trim();
-        // const body = bodyEl.innerHTML.trim();
-
-        // const editFormEl = postListItemEl.querySelector(".editPostContainer");
 
         const cardFooterEl = postListItemEl.querySelector(".card-footer")
 
-        // const editTitleEl = postListItemEl.querySelector("#editPostTitle" + id);
-        // const postContentEl = postListItemEl.querySelector("#editPostContent" + id);
-
-        // editTitleEl.value = title;
-        // postContentEl.value = body;
-
         cardFooterEl.classList.remove("d-none");
-
-        // console.log(postListItemEl.id)
-
-        console.log("not textarea or input, " + event.target.nodeName.trim().toUpperCase())
-    } else {
-        console.log(event.target.nodeName.trim().toUpperCase());
     }
 
 }

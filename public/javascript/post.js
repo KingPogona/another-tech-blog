@@ -45,12 +45,6 @@ async function postClickHandler(event) {
         const title = postListItemEl.querySelector('#editPostTitle' + id).value.trim();
         const post_content = postListItemEl.querySelector('#editPostContent' + id).value.trim();
 
-        console.log(id);
-        console.log(title);
-        console.log(post_content);
-
-
-
         if (title && post_content) {
 
             const response = await fetch('/api/posts/' + id, {
@@ -64,7 +58,7 @@ async function postClickHandler(event) {
             });
 
             if (response.ok) {
-                console.log("success")
+                // console.log("success")
                 location.reload();
             } else {
                 alert(response.statusText);
@@ -76,8 +70,6 @@ async function postClickHandler(event) {
         const postListItemEl = event.target.closest(".postListItem")
 
         const id = postListItemEl.id;
-
-        console.log(id);
 
         const response = await fetch('/api/posts/' + id, {
             method: 'delete',
