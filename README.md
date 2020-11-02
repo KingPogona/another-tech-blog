@@ -17,6 +17,11 @@
 
 This is a simple tech blog website.
 
+ [You can find a hosted example here.](https://floating-stream-83878.herokuapp.com)
+
+
+<img width="1792" alt="Screen Shot 2020-11-01 at 10 13 12 PM" src="https://user-images.githubusercontent.com/31211822/97832238-827c0900-1c8f-11eb-87b6-f5368450e3d9.png">
+
 
 
 ## Installation
