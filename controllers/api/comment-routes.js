@@ -6,30 +6,17 @@ const { User, Post } = require('../../models');
 
 // POST /api/comments
 router.post('/', (req, res) => {
-    if (req.session) {
-        // pass session id along with all destructured properties on req.body
-        Comment.create({
-            comment_content: req.body.comment_content,
-            post_id: req.body.post_id,
-            user_id: req.session.user_id
-        })
-            .then(dbPostData => res.json(dbPostData))
-            .catch(err => {
-                console.log(err);
-                res.status(500).json(err);
-            });
-    } else {
-        Comment.create({
-            comment_content: req.body.comment_content,
-            post_id: req.body.post_id,
-            user_id: req.body.user_id
-        })
-            .then(dbCommentData => res.json(dbCommentData))
-            .catch(err => {
-                console.log(err);
-                res.status(400).json(err);
-            });
-    };
+    // pass session id along with all destructured properties on req.body
+    Comment.create({
+        comment_content: req.body.comment_content,
+        post_id: req.body.post_id,
+        user_id: req.body.user_id || req.session.user_id
+    })
+        .then(dbPostData => res.json(dbPostData))
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
 });
 
 // GET (all comments) /api/comments
