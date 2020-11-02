@@ -3,7 +3,7 @@
 <ul class="p-0 m-0">
 
     {{#each posts as |post|}}
-    <li class="row py-3" id="{{post.id}}">
+    <li class="postListItem row py-3" id="{{post.id}}">
         <div class="card w-100">
             <div class="card-header">
                 <span class="float-left font-weight-bold">{{post.title}}</span>
@@ -23,9 +23,9 @@
             </div>
 
             {{!-- remove d-none when it is time to comment on this. or... have a container div to put this into when needed... --}}
-            <div class="card-footer">
+            <div class="card-footer d-none">
                 <div class="border-bottom border-dark p-3">
-                    <textarea class="w-100" name="commentInput" placeholder="Write a comment here..."
+                    <textarea class="w-100" id="commentInput{{post.id}}" placeholder="Write a comment here..."
                         style="height:100px"></textarea>
                     <button type="submit" class="submitComment btn btn-primary w-100">Add Comment</button>
                 </div>
@@ -35,23 +35,18 @@
                 <div class="p-3 ">
                     <h3>Comments:</h3>
                     <ul class="p-0 m-0">
-                        {{!-- {{#each comment as |comment|}} --}}
-                        <li class="row border border-dark rounded-lg my-3 px-3 pt-2">
-                            <div class="Container-fluid">
-                                <p class="font-weight-bold">{{comment.comment_title}}Test Title</p>
+                        {{#each post.comments as |comment|}}
+                        <li class="row border border-dark rounded-lg my-3 px-3 pt-2" id="C" +{{comment.id}}>
+                            <div class="Container w-100">
+                                <p class="font-weight-bold justify-content-between">
+                                    <span class="float-left">{{comment.user.username}} </span>
+                                    <span class="float-right">{{comment.created_at}}</span>
+                                </p>
 
-                                <p>{{comment.comment_content}} test content</p>
+                                <p class="mt-3 pt-3">{{comment.comment_content}}</p>
                             </div>
                         </li>
-
-                        <li class="row border border-dark rounded-lg my-3 px-3 pt-2">
-                            <div class="Container-fluid">
-                                <p class="font-weight-bold">{{comment.comment_title}}Test Title</p>
-
-                                <p>{{comment.comment_content}} test content</p>
-                            </div>
-                        </li>
-                        {{!-- {{/each}} --}}
+                        {{/each}}
                     </ul>
                 </div>
             </div>
@@ -61,8 +56,4 @@
 
 </ul>
 
-{{!-- 
-<a href="{{post.post_url}}" target="_blank">{{post.title}}</a>
-
-<a href="/post/{{post.id}}">{{post.comments.length}} comment(s)</a> 
---}}
+<script src="/javascript/homePage.js"></script>
